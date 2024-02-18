@@ -3,7 +3,7 @@ from rest_framework import views
 from rest_framework import generics, status
 from rest_framework.response import Response
 
-from users.serializers import LoginSerializer
+from apps.users.serializers import LoginSerializer
 from django.contrib.auth import login, logout
 
 # Create your views here.

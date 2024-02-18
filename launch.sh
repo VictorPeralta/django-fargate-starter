@@ -11,4 +11,4 @@ echo "PostgreSQL started"
 python manage.py migrate
 python manage.py collectstatic --no-input
 
-gunicorn starter.wsgi:application --bind 0.0.0.0:8000
+gunicorn django_config.wsgi:application --bind 0.0.0.0:8000

@@ -35,7 +35,7 @@ services:
       - web	
   celery:
     build: .
-    command: celery -A starter worker -l info
+    command: celery -A django_config worker -l info
     volumes:
       - ./:/app
     env_file:
@@ -45,7 +45,7 @@ services:
       - sqs
   beat:
     build: .
-    command: celery -A starter beat -l info
+    command: celery -A django_config beat -l info
     volumes:
       - ./:/app
     env_file:

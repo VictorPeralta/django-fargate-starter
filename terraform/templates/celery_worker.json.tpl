@@ -2,7 +2,7 @@
   {
     "name": "celery-worker",
     "image": "${docker_image_url_django}",
-    "command": ["celery", "-A", "starter", "worker", "-l", "info"],
+    "command": ["celery", "-A", "django_config", "worker", "-l", "info"],
     "cpu": 256,
     "memory": 512,
     "essential": true,

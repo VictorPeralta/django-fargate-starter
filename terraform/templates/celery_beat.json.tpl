@@ -2,7 +2,7 @@
   {
     "name": "celery-beat",
     "image": "${docker_image_url_django}",
-    "command": ["celery", "-A", "starter", "beat", "-l", "info"],
+    "command": ["celery", "-A", "dango_config", "beat", "-l", "info"],
     "cpu": 256,
     "memory": 512,
     "essential": true,
