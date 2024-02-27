@@ -14,12 +14,12 @@ services:
     image: roribio16/alpine-sqs
   web:
     container_name: web
-    build: .
+    build: ./backend
     command: tail -f /dev/null
     ports:
       - 8000:8000
     volumes:
-      - ./:/app
+      - ./backend/:/app
     env_file:
       - ./.env.dev
     depends_on:
@@ -34,20 +34,20 @@ services:
     depends_on:	
       - web	
   celery:
-    build: .
-    command: celery -A django_config worker -l info
+    build: ./backend
+    command: celery -A /backend/django_config worker -l info
     volumes:
-      - ./:/app
+      - ./backend/:/app
     env_file:
       - ./.env.dev
     depends_on:
       - db
       - sqs
   beat:
-    build: .
-    command: celery -A django_config beat -l info
+    build: ./backend
+    command: celery -A /backend/django_config beat -l info
     volumes:
-      - ./:/app
+      - ./backend/:/app
     env_file:
       - ./.env.dev
     depends_on:
