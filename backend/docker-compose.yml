@@ -14,47 +14,46 @@ services:
     image: roribio16/alpine-sqs
   web:
     container_name: web
-    build: ./backend
+    build: .
     command: tail -f /dev/null
     ports:
       - 8000:8000
     volumes:
-      - ./backend/:/app
+      - ./:/app
     env_file:
       - ./.env.dev
     depends_on:
       - sqs
       - db
-  nginx:	
-    build: ./nginx	
-    ports:	
-      - 80:80	
-    volumes:	
-      - static_files:/app/staticfiles	
-    depends_on:	
-      - web	
-  celery:
-    build: ./backend
-    command: celery -A /backend/django_config worker -l info
+  nginx:
+    build: ./nginx
+    ports:
+      - 80:80
     volumes:
-      - ./backend/:/app
+      - static_files:/app/staticfiles
+    depends_on:
+      - web
+  celery:
+    build: .
+    command: celery -A /django_config worker -l info
+    volumes:
+      - ./:/app
     env_file:
       - ./.env.dev
     depends_on:
       - db
       - sqs
   beat:
-    build: ./backend
-    command: celery -A /backend/django_config beat -l info
+    build: .
+    command: celery -A /django_config beat -l info
     volumes:
-      - ./backend/:/app
+      - ./:/app
     env_file:
       - ./.env.dev
     depends_on:
       - db
       - sqs
 
-
 volumes:
   postgres_data:
-  static_files:	
+  static_files:
