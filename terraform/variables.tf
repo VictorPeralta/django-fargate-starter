@@ -128,9 +128,15 @@ variable "ses_smtp_endpoint" {
 
 variable "ses_smtp_port" {
   description = "The SMTP port"
-  default = 587
+  default     = 587
 }
 
 variable "default_from_email" {
   description = "Default email to send from"
+}
+
+# S3 bucket
+variable "private_bucket_name" {
+  description = "private S3 Bucket name"
+  default     = "dfs-private"
 }

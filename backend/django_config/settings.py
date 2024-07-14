@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
+
 import os
 from pathlib import Path
 
@@ -152,3 +153,7 @@ AUTH_USER_MODEL = "users.User"
 DJOSER = {
     "CREATE_SESSION_ON_LOGIN": True,
 }
+
+AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID", "")
+AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY", "")
+S3_BUCKET_NAME = os.environ.get("S3_BUCKET_NAME", "")
